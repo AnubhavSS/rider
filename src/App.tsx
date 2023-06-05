@@ -102,8 +102,7 @@ const sentMessage = (val:ChatMessage) => {
     
     setPage(nextPage); 
     setindex(index+5)
-    console.log(info,index)
-    
+  
   };
 
 
