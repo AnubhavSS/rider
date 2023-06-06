@@ -25,22 +25,24 @@ const Bottombar: FC<BottombarProps> = ({ sentMessage }) => {
   };
 
   return (
-    <>
-    <div style={{ position: 'fixed', bottom: 0, left: 0, width: '100%' }}>
+   <>
+    <div style={{ position: 'sticky', bottom: 0, left: 0, width: '100%'  }}>
       <FormControl p={3} bg="white">
-        <Flex direction="row">
+        
+          <InputGroup>
           <Input placeholder="Type a message...." autoComplete="off" value={input ?? ''}  onChange={(e) => setinput(e.target.value)} />
 
           {/* Attachment */}
+          <InputRightElement>
+          <Flex direction="row" mr={6}>
           <Popover placement="top-start">
             <PopoverTrigger>
-              <Button type="submit" mx={1.5}>
-                <GrAttachment />
-              </Button>
+             
+               <Box  as='button' mx={1.5} >  <GrAttachment /></Box>
             </PopoverTrigger>
             <PopoverContent w="fit-content" bg="customGreen" border="0">
               <PopoverBody color="white" minWidth="100px" borderRadius="lg" p={2} m={1}>
-                <Flex alignItems="center" justifyContent="space-between">
+                <Flex alignItems="center" justifyContent='space-between'  >
                   <BsCamera />
                   <BsCameraVideo />
                   <HiDocument />
@@ -48,11 +50,11 @@ const Bottombar: FC<BottombarProps> = ({ sentMessage }) => {
               </PopoverBody>
             </PopoverContent>
           </Popover>
-
-          <Button type="submit" mx={'1.5'} onClick={sendMessage}>
-            <AiOutlineSend />
-          </Button>
-        </Flex>
+          <Box  as='button' mx={1.5} onClick={sendMessage}> <AiOutlineSend /></Box>
+          </Flex>
+          </InputRightElement>
+          </InputGroup>
+       
       </FormControl>
     </div>
     </>
