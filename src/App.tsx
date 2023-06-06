@@ -110,7 +110,7 @@ const sentMessage = (val:ChatMessage) => {
   useBottomScrollListener(loadMoreChats, {
     offset: 100,
     debounce: 1,
-    triggerOnNoScroll: true
+    triggerOnNoScroll: false
   });
   
 
