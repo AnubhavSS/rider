@@ -9,8 +9,8 @@ interface Props{
 }
 const Topbar:FC<Props> = ({name,from,to}) => {
   return (
-    <div>
-        <Flex align='center' ms={4} fontWeight='bold' fontSize='xl' >
+    <>
+        <Flex align='center' ms={4} fontWeight='bold' fontSize='xl'  >
             <BsArrowLeft />
         <Text mx={4} >{name}</Text>
         </Flex>
@@ -25,9 +25,9 @@ const Topbar:FC<Props> = ({name,from,to}) => {
     </Text>
             </Flex>
             <Spacer />
-            <Flex direction='column' align='center' gap={5}>
-            <BsPencilSquare  />
-            <Popover>
+            <Flex direction='column' align='center' gap={6} mb={9}>
+            <BsPencilSquare />
+            <Popover  >
   <PopoverTrigger>
     <Button colorScheme='gray' variant='ghost'> <BsThreeDotsVertical/></Button>
   </PopoverTrigger>
@@ -42,15 +42,12 @@ const Topbar:FC<Props> = ({name,from,to}) => {
     </PopoverBody>
   </PopoverContent>
 </Popover>
-
-           
-          
-          
+ 
             </Flex>
         </Flex>
         
         </Flex>
-    </div>
+    </>
   )
 }
 

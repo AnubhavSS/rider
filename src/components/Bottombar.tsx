@@ -1,5 +1,5 @@
 import React, { useState,FC } from 'react';
-import { Button, Flex, FormControl, Input, Popover, PopoverTrigger, PopoverContent, PopoverBody } from '@chakra-ui/react';
+import {  Flex, FormControl, Input, Popover, PopoverTrigger, PopoverContent, PopoverBody ,Box,InputGroup,InputRightElement} from '@chakra-ui/react';
 
 import { AiOutlineSend } from 'react-icons/ai';
 import { GrAttachment } from 'react-icons/gr';
@@ -27,9 +27,9 @@ const Bottombar: FC<BottombarProps> = ({ sentMessage }) => {
   return (
    <>
     <div style={{ position: 'sticky', bottom: 0, left: 0, width: '100%'  }}>
-      <FormControl p={3} bg="white">
+      <FormControl p={3} >
         
-          <InputGroup>
+          <InputGroup bg={'white'} overflowX='hidden'>
           <Input placeholder="Type a message...." autoComplete="off" value={input ?? ''}  onChange={(e) => setinput(e.target.value)} />
 
           {/* Attachment */}
