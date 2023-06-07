@@ -147,7 +147,7 @@ const sentMessage = (val:ChatMessage) => {
   talk.map((item) =>
     item.id?.length!==6 ? (
       <Flex key={item.id? item.id : Math.ceil(Math.random()*100)}>
-        <Avatar src={item.sender.image && item.sender.image} marginEnd={1} size='sm' />
+        <Avatar src={item.sender?.image} marginEnd={1} size='sm' />
         <Flex bg='whiteAlpha.200' w='fit-content' minWidth='100px' borderRadius='lg' p={2} m={1}>
           <Text boxShadow='lg' p='6' rounded='md' fontSize='md'   >
             {item.message? item.message:"Some problem occured"}
