@@ -30,15 +30,15 @@ const Bottombar: FC<BottombarProps> = ({ sentMessage }) => {
       <FormControl p={3} >
         
           <InputGroup bg={'white'} >
-          <Input placeholder="Type a message...." autoComplete="off" value={input ?? ''}  onChange={(e) => setinput(e.target.value)} />
+          <Input placeholder="Type a message...." autoComplete="off" value={input ?? ''} size='lg'   onChange={(e) => setinput(e.target.value)} />
 
           {/* Attachment */}
-          <InputRightElement>
+          <InputRightElement mt={1} >
           <Flex direction="row" mr={6}>
           <Popover placement="top-start">
             <PopoverTrigger>
              
-               <Box  as='button' mx={1.5} >  <GrAttachment /></Box>
+               <Box  as='button' mx={1.5} boxSize={'4'} >  <GrAttachment /></Box>
             </PopoverTrigger>
             <PopoverContent w="fit-content" bg="customGreen" border="0" borderRadius="full">
               <PopoverBody color="white" minWidth="100px"  p={2} m={1}>
