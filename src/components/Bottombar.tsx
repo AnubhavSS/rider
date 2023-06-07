@@ -26,10 +26,10 @@ const Bottombar: FC<BottombarProps> = ({ sentMessage }) => {
 
   return (
    <>
-    <div style={{ position: 'sticky', bottom: 0, left: 0, width: '100%'  }}>
+    <div style={{ position: 'sticky', bottom: 0, left: 0, width: '97%',margin: '0 auto'  }}>
       <FormControl p={3} >
         
-          <InputGroup bg={'white'} overflowX='hidden'>
+          <InputGroup bg={'white'} >
           <Input placeholder="Type a message...." autoComplete="off" value={input ?? ''}  onChange={(e) => setinput(e.target.value)} />
 
           {/* Attachment */}
