@@ -26,7 +26,7 @@ const Bottombar: FC<BottombarProps> = ({ sentMessage }) => {
 
   return (
    <>
-    <div style={{ position: 'sticky', bottom: 0, left: 0, width: '97%',margin: '0 auto'  }}>
+    <div style={{ position: 'sticky', bottom: 0, left: 0, width: '92%',margin: '0 auto'  }}>
       <FormControl p={3} >
         
           <InputGroup bg={'white'} >
@@ -40,8 +40,8 @@ const Bottombar: FC<BottombarProps> = ({ sentMessage }) => {
              
                <Box  as='button' mx={1.5} >  <GrAttachment /></Box>
             </PopoverTrigger>
-            <PopoverContent w="fit-content" bg="customGreen" border="0">
-              <PopoverBody color="white" minWidth="100px" borderRadius="lg" p={2} m={1}>
+            <PopoverContent w="fit-content" bg="customGreen" border="0" borderRadius="full">
+              <PopoverBody color="white" minWidth="100px"  p={2} m={1}>
                 <Flex alignItems="center" justifyContent='space-between'  >
                   <BsCamera />
                   <BsCameraVideo />
