@@ -1,5 +1,5 @@
 
-import { useEffect,useState,useRef } from 'react'
+import { useEffect,useState } from 'react'
 import { Flex, Text, Avatar,Box } from '@chakra-ui/react'
 import Topbar from './components/Topbar'
 import Bottombar from './components/Bottombar'
@@ -37,7 +37,8 @@ function App() {
   const [info, setinfo] = useState<Response|null>(null)
  const [page, setPage] = useState<number>(0);
 const [index, setindex] = useState<number>(5)
-const ref=useRef(null)
+const [talk, settalk] = useState<Array<Chats>>([])
+
 
 
 
@@ -58,7 +59,7 @@ const fetchChats = async (page:number):Promise<Response> => {
 useEffect(() => {
   const initialFetch = async () => {
     const initialChats = await fetchChats(0);
-    
+    settalk(initialChats.chats.slice(0,4))
    setinfo(initialChats)
   };
 
@@ -69,7 +70,7 @@ useEffect(() => {
 
 const sentMessage = (val:ChatMessage) => {
  
-  const newChats = [...(info?.chats || [])];
+ 
   const newChatItem: Chats = {
     id: val.id.toString(),
     message: val.message,
@@ -81,16 +82,17 @@ const sentMessage = (val:ChatMessage) => {
     },
     time: new Date().toLocaleString() // Provide a default value
   };
-  newChats.splice(index, 0, newChatItem);
-
-  setinfo((prevInfo) => ({
-    ...(prevInfo as Response), // Explicitly cast prevInfo to Response type
-    chats: newChats,
-  }));
+  const newChats=[...talk,newChatItem]
+  settalk(newChats)
 };
 
   const loadMoreChats =  async () => {
-   
+
+   const upTalk= [...talk,info?.chats[index] ??{} as Chats ]
+   settalk(upTalk)
+   setindex(index+1)
+   if(index%10===9)
+   {
     const nextPage = page + 1;
     const newChats = await fetchChats(nextPage);//fetching more chats
     setinfo((prevInfo) => {
@@ -101,16 +103,18 @@ const sentMessage = (val:ChatMessage) => {
     });
     
     setPage(nextPage); 
-    setindex(index+5)
+   // setindex(index+5)
+   }
+   console.log("Hello")
   
   };
 
 
   // When ScrollBar hits bottom 
   useBottomScrollListener(loadMoreChats, {
-    offset: 100,
+    offset: 50,
     debounce: 1,
-    triggerOnNoScroll: true
+    triggerOnNoScroll: false
   });
   
 
@@ -139,21 +143,21 @@ const sentMessage = (val:ChatMessage) => {
 
         {/* Incoming */} 
         
-        {info?.chats &&
-  info.chats.slice(0,index).map((item) =>
-    item.id.length!==6 ? (
-      <Flex key={item.id}>
-        <Avatar src={item.sender.image} marginEnd={1} size='sm' />
+        {talk &&
+  talk.map((item) =>
+    item.id?.length!==6 ? (
+      <Flex key={item.id? item.id : Math.ceil(Math.random()*100)}>
+        <Avatar src={item.sender.image && item.sender.image} marginEnd={1} size='sm' />
         <Flex bg='whiteAlpha.200' w='fit-content' minWidth='100px' borderRadius='lg' p={2} m={1}>
-          <Text boxShadow='lg' p='6' rounded='md' fontSize='md' ref={ref}   >
-            {item.message}
+          <Text boxShadow='lg' p='6' rounded='md' fontSize='md'   >
+            {item.message? item.message:"Some problem occured"}
           </Text>
         </Flex>
       </Flex>
     ) : (
-      <Flex key={item.id} bg='customBlue' alignSelf='flex-end' w='fit-content' minWidth='100px' borderRadius='lg' p={2} m={1}>
+      <Flex key={item.id? item.id : Math.ceil(Math.random()*100)} bg='customBlue' alignSelf='flex-end' w='fit-content' minWidth='100px' borderRadius='lg' p={2} m={1}>
         <Text color={'white'} fontSize='md'>
-          {item.message.substring(3)}
+          {item.message?item.message.substring(3):"Some problem occured"}
         </Text>
       </Flex>
     )
